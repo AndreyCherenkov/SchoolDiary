@@ -1,0 +1,21 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+footer {
+    /* Убедитесь, что подвал занимает всю ширину */
+    width: 100%;
+}
+
+/*Для карточек входа*/
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}

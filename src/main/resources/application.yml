@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: school-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5431/school_db
+    username: postgres
+    password: postgres
+
+  #  liquibase:
+  #    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  #    enabled: true
+  #    url: jdbc:postgresql://localhost:5431/taskmaster_db
+  #    default-schema: public
+  #    liquibase-schema: public
+  #    user: postgres
+  #    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+#spring:
+#  application:
+#    name: taskmasterserver
+#
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
+#
+#  liquibase:
+#    change-log: ${CHANGELOG}
+#    enabled: true
+#    url: ${DB_URL}
+#    default-schema: public
+#    liquibase-schema: public
+#    user: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    open-in-view: false
+#
+#  logging:
+#    level:
+#      org.hibernate.SQL: OFF
+#      org.hibernate.type.descriptor.sql.BasicTypeDescriptor: OFF
+#
+#jwt:
+#  access-token-key: '{"kty":"oct","k":"hi7S5RX5ZRZooHA0RKGctZ-KtR9FoESgCnH-3BNg5XI"}' # оставить до нормальной реализации JWT токенов
+#  refresh-token-key: '{"kty":"oct","k":"956PBFst1FguLr5irJD-aQ"}' # оставить до нормальной реализации JWT токенов
+#  secret-key: ${JWT_SECRET_KEY}
