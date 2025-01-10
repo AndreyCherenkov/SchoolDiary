@@ -1,5 +1,12 @@
 body {
     background-color: #f8f9fa;
+    font-family: Arial, sans-serif; /* Устанавливаем шрифт для всего документа */
+    color: #343a40; /* Темно-серый цвет текста */
+}
+
+h1 {
+    text-align: center; /* Центрируем заголовок */
+    margin-bottom: 20px;
 }
 
 .navbar {
@@ -7,15 +14,55 @@ body {
 }
 
 footer {
-    /* Убедитесь, что подвал занимает всю ширину */
     width: 100%;
+    text-align: center; /* Центрируем текст в подвале */
+    padding: 10px 0;
+    background-color: #343a40; /* Темный фон для подвала */
+    color: white; /* Белый цвет текста в подвале */
 }
 
-/*Для карточек входа*/
 .card {
     transition: transform 0.2s;
 }
 
 .card:hover {
     transform: scale(1.05);
+}
+
+/* Стили для таблицы расписания */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные границы */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Светло-серая граница */
+}
+
+th {
+    background-color: #e9ecef; /* Светло-серый фон для заголовков */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Цвет фона при наведении на строку */
+}
+
+/* Стили для кнопки добавления занятия */
+.add-subject-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff; /* Синий фон кнопки */
+    color: white; /* Белый цвет текста */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: background-color 0.3s;
+}
+
+.add-subject-btn:hover {
+    background-color: #0056b3; /* Темно-синий при наведении */
 }

@@ -1,5 +1,6 @@
 package ru.andreycherenkov.school.db.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,25 +9,22 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "subjects")
+public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "student_id")
-    private UUID studentId;
+    private UUID subjectId;
 
-    private String firstName;
+    private String title;
 
-    private String lastName;
-
-    private String secondName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "class_id", nullable = false)
     private SchoolClass schoolClass;
+
 }

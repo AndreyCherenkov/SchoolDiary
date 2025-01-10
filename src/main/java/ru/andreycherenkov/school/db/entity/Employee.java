@@ -8,25 +8,20 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "students")
-public class Student {
+@MappedSuperclass
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "student_id")
-    private UUID studentId;
+    private UUID employeeId;
 
     private String firstName;
-
     private String lastName;
+    private String email;
+    private String phoneNumber;
 
-    private String secondName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private SchoolClass schoolClass;
 }

@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сервис Дневника Школьников</title>
+    <title>Список классов - Дневник Школьников</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -19,26 +18,35 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/classes/all}">Список классов</a>  <!-- Ссылка на список классов -->
+                <a class="nav-link" href="./login.html">Вход</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Вход</a>
+                <a class="nav-link" href="./classes">Список классов</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <!-- Основной блок -->
-<div class="container text-center my-5 flex-grow-1">
-    <h1>Добро пожаловать в Сервис Дневника Школьников!</h1>
-    <p class="lead">Управляйте своим учебным процессом легко и удобно.</p>
-    <p>Наш сервис поможет вам отслеживать оценки, задания и посещаемость. Присоединяйтесь к нам и сделайте учебу более
-        организованной!</p>
-    <a th:href="@{/login}" class="btn btn-primary btn-lg">Начать сейчас</a>
+<div class="container my-5 flex-grow-1">
+    <h1 class="text-center">Список классов</h1>
+    <ul class="list-group mt-4">
+        <th:block th:each="schoolClass : ${schoolClasses}">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a th:text="${schoolClass.classGrade} + '' + ${schoolClass.classCharacter}"></a>
+                </div>
+                <div>
+                    <a th:href="@{/schedules/{classId}(classId=${schoolClass.classId})}" class="btn btn-info btn-sm mr-2">Расписание</a>
+                    <a th:href="@{/subjects/{classId}(classId=${schoolClass.classId})}" class="btn btn-secondary btn-sm">Предметы</a>
+                </div>
+            </li>
+        </th:block>
+    </ul>
 </div>
 
 <!-- Подвал -->
-<footer class="bg-light text-center py-3">
+<footer class="bg-light text-center py-3 mt-auto">
     <p>&copy; 2024 Дневник Школьников. Все права защищены.</p>
     <p>Авторы: 8К11 Черенков А.А.</p>
 </footer>
@@ -46,5 +54,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

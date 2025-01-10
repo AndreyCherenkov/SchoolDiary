@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование расписания</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Дневник Школьников</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="./login.html">Вход</a>  <!--todo href -->
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container my-5 flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="card w-75">
+        <div class="card-header text-center">
+            <h2>Расписание занятий для класса: <span th:text="${schoolClass.classGrade + schoolClass.classCharacter}"></span></h2>
+        </div>
+        <div class="card-body">
+            <!-- Таблица расписания -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Номер урока</th>
+                    <th>Понедельник</th>
+                    <th>Вторник</th>
+                    <th>Среда</th>
+                    <th>Четверг</th>
+                    <th>Пятница</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lesson, iterStat : ${scheduleList}">
+                <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Понедельник' ? lesson.subject : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Вторник' ? lesson.subject : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Среда' ? lesson.subject : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Четверг' ? lesson.subject : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Пятница' ? lesson.subject : ''}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Кнопка для открытия модального окна -->
+            <button type="button" class="btn btn-primary btn-block mt-3" data-toggle="modal"
+                    data-target="#addSubjectModal">
+                Добавить предмет
+            </button>
+
+            <div class="modal fade" id="addSubjectModal" tabindex="-1" role="dialog"
+                 aria-labelledby="addSubjectModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addSubjectModalLabel">Добавление предмета</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" th:action="@{/schedules/add}" method="post">
+
+                                <input type="hidden" name="classId" th:value="${schoolClass.classId}">
+
+                                <div class="form-group">
+                                    <label for="lessonNumber">Номер урока:</label>
+                                    <input type="number" id="lessonNumber" name="lessonNumber" class="form-control"
+                                           required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dayOfWeek">День недели:</label>
+                                    <select id="dayOfWeek" name="dayOfWeek" class="form-control" required>
+                                        <option value="">Выберите день</option>
+                                        <option value="Понедельник">Понедельник</option>
+                                        <option value="Вторник">Вторник</option>
+                                        <option value="Среда">Среда</option>
+                                        <option value="Четверг">Четверг</option>
+                                        <option value="Пятница">Пятница</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">Предмет:</label>
+                                    <input type="text" id="subject" name="subject" class="form-control" required/>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Подвал -->
+<footer class="bg-light text-center py-3 mt-auto">
+    <p>&copy; 2024 Дневник Школьников. Все права защищены.</p>
+    <p>Авторы: 8К11 Черенков А.А.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
