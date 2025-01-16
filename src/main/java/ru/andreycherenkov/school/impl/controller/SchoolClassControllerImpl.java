@@ -6,10 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.andreycherenkov.school.api.Pages;
 import ru.andreycherenkov.school.api.controller.SchoolClassController;
+import ru.andreycherenkov.school.api.dto.CreateSchoolClassDto;
 import ru.andreycherenkov.school.api.dto.SchoolClassResponseDto;
 import ru.andreycherenkov.school.api.service.SchoolClassService;
-import ru.andreycherenkov.school.api.service.SubjectService;
-import ru.andreycherenkov.school.db.entity.SchoolClass;
 
 @Controller
 @AllArgsConstructor
@@ -24,7 +23,7 @@ public class SchoolClassControllerImpl implements SchoolClassController {
     }
 
     @Override
-    public ResponseEntity<SchoolClassResponseDto> createSchoolClass(SchoolClass schoolClass) {
+    public ResponseEntity<SchoolClassResponseDto> createSchoolClass(CreateSchoolClassDto schoolClass) {
         return schoolClassService.createSchoolClass(schoolClass);
     }
 }

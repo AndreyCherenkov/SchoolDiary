@@ -27,13 +27,13 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="subject, iterStat : ${subjectsList}">
+        <th:block th:each="schoolSubject, iterStat : ${subjectsList}">
             <tr>
                 <th scope="row" th:text="${iterStat.index + 1}"></th>
-                <td th:text="${subject.title}"></td>
+                <td th:text="${schoolSubject.title}"></td>
                 <td>
-                    <a th:href="@{/subjects/{id}(id=${subject.subjectId})}" class="btn btn-info btn-sm">Просмотреть</a>
-                    <a th:href="@{/classes/{classId}/remove-subject/{subjectId}(classId=${schoolClass.classId}, subjectId=${subject.subjectId})}" class="btn btn-danger btn-sm">Удалить</a>
+                    <a th:href="@{/subjects/{id}(id=${schoolSubject.subjectId})}" class="btn btn-info btn-sm">Просмотреть</a>
+                    <a th:href="@{/classes/{classId}/remove-schoolSubject/{subjectId}(classId=${schoolClass.classId}, subjectId=${schoolSubject.subjectId})}" class="btn btn-danger btn-sm">Удалить</a>
                 </td>
             </tr>
         </th:block>
@@ -61,8 +61,8 @@
                         <input type="hidden" name="classId" th:value="${schoolClass.classId}">
 
                         <div class="form-group">
-                            <label for="subject">Введите предмет:</label>
-                            <input type="text" id="subject" name="subjectTitle" class="form-control" placeholder="Введите название предмета" required />
+                            <label for="schoolSubject">Введите предмет:</label>
+                            <input type="text" id="schoolSubject" name="subjectTitle" class="form-control" placeholder="Введите название предмета" required />
                         </div>
 
                         <button type="submit" class="btn btn-primary">Сохранить</button>

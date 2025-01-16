@@ -1,98 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход в Сервис Дневника Школьников</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Подключение вашего CSS -->
-    <style>
-        html, body {
-            height: 100%;
-        }
-        .container {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Центрирование карточек по вертикали */
-        }
-        .card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Выравнивание элементов внутри карточки */
-            height: 100%; /* Высота карточки 100% */
-        }
-    </style>
 </head>
-<body class="d-flex flex-column min-vh-100">
-
-<!-- Навигационная панель -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Дневник Школьников</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Регистрация</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<!-- Основной блок -->
-<div class="container text-center my-5">
-    <h1>Выберите свою роль для входа</h1>
-    <div class="row mt-4 d-flex align-items-stretch"> <!-- Добавлено d-flex и align-items-stretch -->
-        <!-- Карточка Учителя -->
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm"> <!-- Убрано h-100, высота задается через CSS -->
-                <div class="card-body d-flex flex-column"> <!-- Добавлено d-flex для выравнивания -->
-                    <h5 class="card-title">Учитель</h5>
-                    <p class="card-text">Войдите как учитель, чтобы управлять классами и отслеживать успеваемость
-                        учеников.</p>
-                    <a href="#" class="btn btn-primary mt-auto">Вход</a> <!-- mt-auto для отталкивания кнопки вниз -->
-                </div>
-            </div>
+<body>
+<div class="container mt-5">
+    <h1>Вход</h1>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" class="form-control" id="username" name="username" required>
         </div>
-
-        <!-- Карточка Родителя -->
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm"> <!-- Убрано h-100, высота задается через CSS -->
-                <div class="card-body d-flex flex-column"> <!-- Добавлено d-flex для выравнивания -->
-                    <h5 class="card-title">Родитель</h5>
-                    <p class="card-text">Войдите как родитель, чтобы отслеживать успеваемость и посещаемость вашего
-                        ребенка.</p>
-                    <a href="#" class="btn btn-primary mt-auto">Вход</a> <!-- mt-auto для отталкивания кнопки вниз -->
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
-
-        <!-- Карточка Ученик -->
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm"> <!-- Убрано h-100, высота задается через CSS -->
-                <div class="card-body d-flex flex-column"> <!-- Добавлено d-flex для выравнивания -->
-                    <h5 class="card-title">Ученик</h5>
-                    <p class="card-text">Войдите как ученик, чтобы просматривать свои оценки и задания.</p>
-                    <a href="#" class="btn btn-primary mt-auto">Вход</a> <!-- mt-auto для отталкивания кнопки вниз -->
-                </div>
-            </div>
-        </div>
-    </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
 </div>
-
-<!-- Подвал -->
-<footer class="bg-light text-center py-3">
-    <p>&copy; 2023 Дневник Школьников. Все права защищены.</p>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

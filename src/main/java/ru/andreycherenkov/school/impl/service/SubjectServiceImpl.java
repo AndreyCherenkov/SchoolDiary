@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.andreycherenkov.school.api.service.SubjectService;
 import ru.andreycherenkov.school.db.entity.SchoolClass;
-import ru.andreycherenkov.school.db.entity.Subject;
+import ru.andreycherenkov.school.db.entity.SchoolSubject;
 import ru.andreycherenkov.school.db.repository.SchoolClassRepository;
 import ru.andreycherenkov.school.db.repository.SubjectRepository;
 
@@ -20,22 +20,22 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectRepository subjectRepository;
 
     @Override
-    public List<Subject> findByClassId(UUID classId) {
+    public List<SchoolSubject> findByClassId(UUID classId) {
         return subjectRepository.findSubjectsBySchoolClassClassId(classId);
     }
 
     @Override
     @Transactional
-    public void addSubject(UUID classId, String title) {
+    public void addSubject(UUID classId, String subjectTitle) {
         SchoolClass schoolClass = schoolClassRepository.findById(classId)
                 .orElseThrow(() -> new RuntimeException("Класс не найден")); //todo refactor
 
-        Subject subject = new Subject();
-        subject.setSchoolClass(schoolClass);
-        subject.setTitle(title);
-        schoolClass.getSubjects().add(subject);
+        SchoolSubject schoolSubject = new SchoolSubject();
+        schoolSubject.setSchoolClass(schoolClass);
+        schoolSubject.setTitle(subjectTitle);
+        schoolClass.getSchoolSubjects().add(schoolSubject);
 
-        subjectRepository.save(subject);
+        subjectRepository.save(schoolSubject);
         schoolClassRepository.save(schoolClass);
     }
 }

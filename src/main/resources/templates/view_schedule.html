@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,11 +46,11 @@
                 <tbody>
                 <tr th:each="lesson, iterStat : ${scheduleList}">
                 <td th:text="${iterStat.index + 1}"></td>
-                    <td th:text="${lesson.dayOfWeek == 'Понедельник' ? lesson.subject : ''}"></td>
-                    <td th:text="${lesson.dayOfWeek == 'Вторник' ? lesson.subject : ''}"></td>
-                    <td th:text="${lesson.dayOfWeek == 'Среда' ? lesson.subject : ''}"></td>
-                    <td th:text="${lesson.dayOfWeek == 'Четверг' ? lesson.subject : ''}"></td>
-                    <td th:text="${lesson.dayOfWeek == 'Пятница' ? lesson.subject : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Понедельник' ? lesson.schoolSubject.title : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Вторник' ? lesson.schoolSubject.title : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Среда' ? lesson.schoolSubject.title : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Четверг' ? lesson.schoolSubject.title : ''}"></td>
+                    <td th:text="${lesson.dayOfWeek == 'Пятница' ? lesson.schoolSubject.title : ''}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -95,8 +95,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="subject">Предмет:</label>
-                                    <input type="text" id="subject" name="subject" class="form-control" required/>
+                                    <label for="schoolSubject">Предмет:</label>
+                                    <select id="schoolSubject" name="subjectTitle" class="form-control" required>
+                                        <option value="">Выберите предмет</option>
+                                        <th:block th:each="schoolSubject : ${schoolSubjects}">
+                                            <option th:value="${schoolSubject.title}" th:text="${schoolSubject.title}"></option>
+                                        </th:block>
+                                    </select>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -105,6 +110,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

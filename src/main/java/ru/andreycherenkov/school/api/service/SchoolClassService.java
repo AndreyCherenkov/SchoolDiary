@@ -1,6 +1,7 @@
 package ru.andreycherenkov.school.api.service;
 
 import org.springframework.http.ResponseEntity;
+import ru.andreycherenkov.school.api.dto.CreateSchoolClassDto;
 import ru.andreycherenkov.school.api.dto.SchoolClassResponseDto;
 import ru.andreycherenkov.school.db.entity.SchoolClass;
 
@@ -13,6 +14,6 @@ public interface SchoolClassService {
 
     SchoolClass findById(UUID uuid);
 
-    ResponseEntity<SchoolClassResponseDto> createSchoolClass(SchoolClass schoolClass);
+    ResponseEntity<SchoolClassResponseDto> createSchoolClass(CreateSchoolClassDto schoolClass);
 
 }

@@ -29,7 +29,9 @@ public class Schedule {
 
     private String dayOfWeek;
 
-    private String subject;
+    @OneToOne
+    @JoinColumn(name = "subject_id", nullable = false)
+    private SchoolSubject schoolSubject;
 
     private String time;
 

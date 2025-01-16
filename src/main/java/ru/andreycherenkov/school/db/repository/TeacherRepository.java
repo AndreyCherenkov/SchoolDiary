@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface TeacherRepository extends JpaRepository<Teacher, UUID> {
 
-    @Query("SELECT t FROM Teacher t LEFT JOIN t.classes c WHERE t.employeeId = :teacherId AND c IS NULL")
+    @Query("SELECT t FROM Teacher t LEFT JOIN t.classes c WHERE t.userId = :teacherId AND c IS NULL")
     Optional<Teacher> findTeacherWithoutClassesById(@Param("teacherId") UUID teacherId);
 
 }

@@ -1,10 +1,12 @@
 package ru.andreycherenkov.school.impl.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.andreycherenkov.school.api.dto.CreateSchoolClassDto;
 import ru.andreycherenkov.school.api.dto.SchoolClassResponseDto;
 import ru.andreycherenkov.school.api.service.SchoolClassService;
 import ru.andreycherenkov.school.db.entity.SchoolClass;
@@ -34,10 +36,18 @@ public class SchoolClassServiceImpl implements SchoolClassService {
 
     @Override
     @Transactional
-    public ResponseEntity<SchoolClassResponseDto> createSchoolClass(SchoolClass schoolClass) {
-        Teacher teacher = teacherRepository.findById(schoolClass.getClassTeacher().getEmployeeId()).get(); //todo refactor
-        schoolClass.setClassTeacher(teacher);
-        SchoolClass newClass = schoolClassRepository.save(schoolClass);
+    public ResponseEntity<SchoolClassResponseDto> createSchoolClass(CreateSchoolClassDto schoolClassDto) {
+        Teacher teacher = teacherRepository.findById(schoolClassDto.getClassTeacherId())
+                .orElseThrow(() -> new EntityNotFoundException("Teacher not found"));
+
+        SchoolClass newClass = new SchoolClass();
+        newClass.setClassGrade(schoolClassDto.getClassGrade());
+        newClass.setClassCharacter(schoolClassDto.getClassCharacter());
+        newClass.setSpecialization(schoolClassDto.getSpecialization());
+        newClass.setClassTeacher(teacher);
+
+        schoolClassRepository.save(newClass);
+
         teacher.getClasses().add(newClass);
         teacherRepository.save(teacher);
 
@@ -52,5 +62,6 @@ public class SchoolClassServiceImpl implements SchoolClassService {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(responseDto);
     }
+
 
 }

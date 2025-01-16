@@ -13,15 +13,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @MappedSuperclass
-public class Employee {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID employeeId;
+    private UUID userId;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
+    private String username;
+    private String password;
 
 }

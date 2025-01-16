@@ -15,6 +15,6 @@ public interface ScheduleController {
     String addSchedule(@RequestParam UUID classId,
                               @RequestParam int lessonNumber,
                               @RequestParam String dayOfWeek,
-                              @RequestParam String subject);
+                              @RequestParam String subjectTitle);
 
 }

@@ -12,11 +12,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-public class Teacher {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID employeeId;
+public class Teacher extends User {
 
     private String firstName;
     private String lastName;

@@ -1,6 +1,5 @@
 package ru.andreycherenkov.school.db.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,14 +13,19 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "subjects")
-public class Subject {
+@Table(name = "school_subjects")
+public class SchoolSubject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID subjectId;
 
     private String title;
+
+    private String homework;
+
+    @OneToOne(mappedBy = "schoolSubject")
+    private Schedule schedule;
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
