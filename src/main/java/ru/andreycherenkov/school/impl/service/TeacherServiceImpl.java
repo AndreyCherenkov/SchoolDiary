@@ -9,6 +9,8 @@ import ru.andreycherenkov.school.api.service.TeacherService;
 import ru.andreycherenkov.school.db.entity.Teacher;
 import ru.andreycherenkov.school.db.repository.TeacherRepository;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class TeacherServiceImpl implements TeacherService {
@@ -35,5 +37,12 @@ public class TeacherServiceImpl implements TeacherService {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(teacher);
+    }
+
+    @Override
+    public String findTeacherFullNameById(UUID teacherId) {
+        Teacher teacher = teacherRepository.findById(teacherId).orElseThrow(
+                () -> new RuntimeException(String.format("Учитель c id %s  не найден", teacherId)));
+        return String.format("%s %s", teacher.getFirstName(), teacher.getLastName());
     }
 }

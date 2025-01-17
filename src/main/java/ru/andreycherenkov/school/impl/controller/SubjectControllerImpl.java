@@ -7,6 +7,7 @@ import ru.andreycherenkov.school.api.Pages;
 import ru.andreycherenkov.school.api.controller.SubjectController;
 import ru.andreycherenkov.school.api.service.SchoolClassService;
 import ru.andreycherenkov.school.api.service.SubjectService;
+import ru.andreycherenkov.school.api.service.TeacherService;
 
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ public class SubjectControllerImpl implements SubjectController {
 
     private SubjectService subjectService;
     private SchoolClassService schoolClassService;
+    private TeacherService teacherService;
 
     @Override
     public String getSubjects(UUID classId, Model model) {
@@ -30,4 +32,15 @@ public class SubjectControllerImpl implements SubjectController {
         return "redirect:/subjects/" + classId;
     }
 
+    @Override
+    public String getMarks(UUID subjectId,
+                           UUID teacherId,
+                           UUID classId,
+                           Model model) {
+        model.addAttribute("subject", subjectService.findSubjectById(subjectId));
+        model.addAttribute("teacherFullName", teacherService.findTeacherFullNameById(teacherId));
+        model.addAttribute("students", schoolClassService.findBySchoolClassId(classId));
+        model.addAttribute("schoolClass", schoolClassService.findById(classId));
+        return Pages.MARKS_PAGE;
+    }
 }

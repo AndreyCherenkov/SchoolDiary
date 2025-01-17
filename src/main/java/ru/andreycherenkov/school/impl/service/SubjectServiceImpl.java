@@ -38,4 +38,10 @@ public class SubjectServiceImpl implements SubjectService {
         subjectRepository.save(schoolSubject);
         schoolClassRepository.save(schoolClass);
     }
+
+    @Override
+    public SchoolSubject findSubjectById(UUID subjectId) {
+        return subjectRepository.findById(subjectId)
+                .orElseThrow(() -> new RuntimeException("Предмет не найден"));
+    }
 }

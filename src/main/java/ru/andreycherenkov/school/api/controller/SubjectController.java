@@ -15,4 +15,10 @@ public interface SubjectController {
     String addSubject(@RequestParam UUID classId,
                       @RequestParam String subjectTitle);
 
+    @GetMapping("/{subjectId}/marks")
+    String getMarks(@PathVariable UUID subjectId,
+                    UUID teacherID,
+                    UUID classId,
+                    Model model);
+
 }

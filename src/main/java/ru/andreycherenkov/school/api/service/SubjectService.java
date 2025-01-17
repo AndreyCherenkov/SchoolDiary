@@ -9,5 +9,6 @@ public interface SubjectService {
 
     List<SchoolSubject> findByClassId(UUID classId);
     void addSubject(UUID classId, String subjectTitle);
+    SchoolSubject findSubjectById(UUID subjectId);
 
 }

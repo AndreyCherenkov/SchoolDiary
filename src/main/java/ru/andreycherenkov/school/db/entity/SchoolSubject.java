@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -30,5 +31,8 @@ public class SchoolSubject {
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
     private SchoolClass schoolClass;
+
+    @OneToMany(mappedBy = "schoolSubject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Grade> grades;
 
 }

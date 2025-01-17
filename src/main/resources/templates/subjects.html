@@ -32,8 +32,12 @@
                 <th scope="row" th:text="${iterStat.index + 1}"></th>
                 <td th:text="${schoolSubject.title}"></td>
                 <td>
-                    <a th:href="@{/subjects/{id}(id=${schoolSubject.subjectId})}" class="btn btn-info btn-sm">Просмотреть</a>
-                    <a th:href="@{/classes/{classId}/remove-schoolSubject/{subjectId}(classId=${schoolClass.classId}, subjectId=${schoolSubject.subjectId})}" class="btn btn-danger btn-sm">Удалить</a>
+                    <form th:action="@{/subjects/{subjectId}/marks(subjectId=${schoolSubject.subjectId})}" method="get" style="display:inline;">
+                        <input type="hidden" name="subjectId" th:value="${schoolSubject.subjectId}"/>
+                        <input type="hidden" name="teacherId" th:value="${schoolClass.classTeacher.userId}"/>
+                        <input type="hidden" name="classId" th:value="${schoolClass.classId}"/>
+                        <button type="submit" class="btn btn-info btn-sm">Посмотреть оценки</button>
+                    </form>
                 </td>
             </tr>
         </th:block>

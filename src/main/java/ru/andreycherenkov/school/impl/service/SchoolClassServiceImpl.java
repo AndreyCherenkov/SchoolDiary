@@ -10,8 +10,10 @@ import ru.andreycherenkov.school.api.dto.CreateSchoolClassDto;
 import ru.andreycherenkov.school.api.dto.SchoolClassResponseDto;
 import ru.andreycherenkov.school.api.service.SchoolClassService;
 import ru.andreycherenkov.school.db.entity.SchoolClass;
+import ru.andreycherenkov.school.db.entity.Student;
 import ru.andreycherenkov.school.db.entity.Teacher;
 import ru.andreycherenkov.school.db.repository.SchoolClassRepository;
+import ru.andreycherenkov.school.db.repository.StudentRepository;
 import ru.andreycherenkov.school.db.repository.TeacherRepository;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class SchoolClassServiceImpl implements SchoolClassService {
 
     private SchoolClassRepository schoolClassRepository;
     private TeacherRepository teacherRepository;
+    private StudentRepository studentRepository;
 
     @Override
     public List<SchoolClass> findAll() {
@@ -30,8 +33,9 @@ public class SchoolClassServiceImpl implements SchoolClassService {
     }
 
     @Override
-    public SchoolClass findById(UUID uuid) {
-        return schoolClassRepository.findById(uuid).orElse(null);
+    public SchoolClass findById(UUID classId) {
+        return schoolClassRepository.findById(classId).orElseThrow(
+                (() -> new RuntimeException(String.format("Класс с id %s не найден", classId))));
     }
 
     @Override
@@ -63,5 +67,8 @@ public class SchoolClassServiceImpl implements SchoolClassService {
                 .body(responseDto);
     }
 
-
+    @Override
+    public List<Student> findBySchoolClassId(UUID classId) {
+        return studentRepository.findBySchoolClassId(classId); //todo вынести в сервис студентов
+    }
 }
